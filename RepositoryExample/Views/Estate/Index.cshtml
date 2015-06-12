@@ -1,0 +1,26 @@
+﻿@model IEnumerable<RepositoryExample.Core.Estate>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<b>States:</b>
+<ul>
+    @foreach(var estate in Model)
+    {
+        <li>
+            <p><b>@estate.Nombre</b></p>
+            @if(estate.Towns != null)
+            {
+                <p>Muncipios:</p>
+                <ul>
+                    @foreach (var municipio in estate.Towns)
+                    {
+                        <li>@municipio.Name</li>
+                    }
+                </ul>
+            }
+        </li>
+    }
+</ul>
