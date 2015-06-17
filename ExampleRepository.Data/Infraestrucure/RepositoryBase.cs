@@ -8,6 +8,7 @@ using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Threading.Tasks;
 using RepositoryExample.Core;
+using ExampleRepository.Data.Exceptions;
 
 namespace ExampleRepository.Data.Infraestrucure
 {
@@ -25,34 +26,85 @@ namespace ExampleRepository.Data.Infraestrucure
 
         public virtual IQueryable<T> GetAll()
         {
-           return  dbSet.AsQueryable();
+            try
+            {
+                return dbSet.AsQueryable();
+            }
+            catch(Exception)
+            {
+                throw new NotFoundException();
+            }
         }
 
         public virtual T GetById(object Id)
         {
-            return dbSet.Find(Id);
+            try
+            {
+                return dbSet.Find(Id);
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException();
+            }
         }
 
         public virtual IQueryable<T> GetBy(Expression<Func<T, bool>> predicate)
         {
-            return dbSet.Where(predicate);
+            try
+            {
+                return dbSet.Where(predicate);
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException();
+            }
         }
 
         public virtual T Create(T entity)
         {
-            return dbSet.Add(entity);
+            try
+            {
+                return dbSet.Add(entity);
+            }
+            catch (Exception)
+            {
+                throw new NotSavedException();
+            }
         }
 
         public virtual void Update(T entity)
         {
-            dbSet.Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            try
+            {
+                dbSet.Attach(entity);
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception)
+            {
+                throw new NotSavedException();
+            }
         }
 
         public virtual void DeleteById(object Id)
         {
-            var entity = dbSet.Find(Id);
-            dbSet.Remove(entity);
+            try
+            {
+                var entity = dbSet.Find(Id);
+                dbSet.Remove(entity);
+            }
+            catch (Exception)
+            {
+                throw new NotDeletedException();
+            }
+        }
+
+        private void Dispose()
+        {
+            if (_dbContext != null)
+            {
+                _dbContext.Dispose();
+                _dbContext = null;
+            }
         }
     }
 }

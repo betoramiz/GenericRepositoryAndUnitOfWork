@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NotDeletedException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Exceptions\NotSavedException.cs" />
+    <Compile Include="Exceptions\RepositoryBaseException.cs" />
     <Compile Include="Infraestrucure\IRepositoryBase.cs" />
     <Compile Include="Infraestrucure\IUnitOfWork.cs" />
     <Compile Include="Infraestrucure\RepositoryBase.cs" />
