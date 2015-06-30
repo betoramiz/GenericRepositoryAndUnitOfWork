@@ -1,0 +1,21 @@
+﻿@model RepositoryExample.Models.RegisterVM
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.DisplayNameFor(x => x.FullName)
+    @Html.TextBoxFor(x => x.FullName)
+    <br />
+    @Html.DisplayNameFor(x => x.Email)
+    @Html.TextBoxFor(x => x.Email)
+    <br />
+    @Html.DisplayNameFor(x => x.Password)
+    @Html.TextBoxFor(x => x.Password)
+    
+    <br />
+    <button type="submit">Crear</button>
+}

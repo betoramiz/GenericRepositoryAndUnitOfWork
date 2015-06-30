@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace RepositoryExample.Controllers
 {
+    [Authorize]
     public class EstateController : Controller
     {
         UnitOfWork unit;

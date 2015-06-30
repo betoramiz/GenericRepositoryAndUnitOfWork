@@ -14,7 +14,7 @@ namespace RepositoryExample
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Auth/Login")
+                LoginPath = new PathString("/Security/LogIn")
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
         }

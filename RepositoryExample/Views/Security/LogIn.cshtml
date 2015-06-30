@@ -1,0 +1,17 @@
+﻿@model RepositoryExample.Models.LoginVM
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<h2>LogIn</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.DisplayNameFor(x => x.Email)
+    @Html.TextBoxFor(x => x.Email)
+    <br />
+    @Html.DisplayNameFor(x => x.Password)
+    @Html.PasswordFor(x => x.Password)
+    <br />
+    <button type="submit">Entrar</button>
+}
